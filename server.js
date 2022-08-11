@@ -14,7 +14,10 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(helmet());
 
-app.use("/", (req, res) => {
+import productRouter from "./src/router/productRouter.js";
+app.use("/api/v1/products", productRouter);
+
+app.get("/", (req, res) => {
   res.json({
     message: "parin collection api",
   });
