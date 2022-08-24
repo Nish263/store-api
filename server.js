@@ -10,9 +10,14 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 
+app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 app.use(helmet());
+
+// database connection
+import db from "../api-store/config/db.js";
+db();
 
 import productRouter from "./src/router/productRouter.js";
 app.use("/api/v1/products", productRouter);

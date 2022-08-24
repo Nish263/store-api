@@ -1,20 +1,25 @@
 import express from "express";
-import { getProducts, getProductsBySlug } from "../model/Product.model";
+import slugify from "slugify";
+import {
+  getProductById,
+  getProducts,
+  getProductsBySlug,
+} from "../model/Product.model.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+  const allProducts = await getProducts();
+  res.send(allProducts);
+});
+router.get("/:id?", async (req, res) => {
   try {
-    const result = await getProducts();
-    result?._id
-      ? res.json({
-          status: "success",
-          message: "Products fetched successfully",
-          result,
-        })
-      : res.json({
-          status: " error",
-          message: "Unable to fectch products",
-        });
+    const { _id } = req.params;
+    const result = await getProductById(_id);
+    res.json({
+      status: "success",
+      message: "Products fetched successfully",
+      result,
+    });
   } catch (error) {
     console.log(error);
   }

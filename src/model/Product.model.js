@@ -1,7 +1,10 @@
-import ProductSchema from "./Product.schema";
+import ProductSchema from "./Product.schema.js";
 
-export const getProducts = () => {
-  return ProductSchema.find();
+export const getSingleProduct = (filter) => {
+  return ProductSchema.findOne(filter);
+};
+export const getProducts = (filter) => {
+  return ProductSchema.find(filter);
 };
 
 export const getProductById = (_id) => {
