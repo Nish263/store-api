@@ -4,7 +4,7 @@ import {
   getProductById,
   getProducts,
   getProductsBySlug,
-} from "../model/Product.model.js";
+} from "../model/product/Product.model.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {

@@ -20,7 +20,9 @@ import db from "../api-store/config/db.js";
 db();
 
 import productRouter from "./src/router/productRouter.js";
+import categoryRouter from "./src/router/categoryRouter.js";
 app.use("/api/v1/products", productRouter);
+app.use("/api/v1/categories", categoryRouter);
 
 app.get("/", (req, res) => {
   res.json({
